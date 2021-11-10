@@ -34,12 +34,15 @@ class Another : Base {
 }
 
 interface IHelloInterface {
+    int Hello { get; }
     void SayHello();
     void SayGoodbye();
 }
 
 class Monkey : IHelloInterface {
     // interface methods can be defined as both virtual or non-virtual
+    public int Hello { get; set; } // can have set property
+
     public virtual void SayHello() {
         Console.WriteLine("ukiki!");
     }

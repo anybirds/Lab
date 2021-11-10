@@ -5,6 +5,8 @@ delegate void MyDelegate(int arg);
 
 
 class HelloDelegate {
+    // covariant generic modifier (in)
+    // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier
     public delegate int Comparer<in T>(T l, T r);
 
     void MyMethod(int arg) {
