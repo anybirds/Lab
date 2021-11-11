@@ -5,9 +5,9 @@ delegate void MyDelegate(int arg);
 
 
 class HelloDelegate {
-    // covariant generic modifier (in)
+    // contravariant generic modifier (in)
     // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-generic-modifier
-    public delegate int Comparer<in T>(T l, T r);
+    public delegate int Comparison<in T>(T l, T r);
 
     void MyMethod(int arg) {
         Console.WriteLine("MyMethod {0}", arg);
@@ -22,7 +22,7 @@ class HelloDelegate {
     // may be improved by replacing T[] to ICollection, removing Comparer<T> and adding IComparable constraints to T.
     // indexers in interfaces 
     // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/indexers-in-interfaces
-    static void Sort<T>(T[] arr, Comparer<T> comparer) {
+    static void Sort<T>(T[] arr, Comparison<T> comparison) {
         // recursive quick sort
         Action<T[], int, int> quickSort = null;
         quickSort = (T[] slice, int l, int r) => {
@@ -33,7 +33,7 @@ class HelloDelegate {
             // separate array into two 
             int m = l;
             for (int i = l + 1; i <= r; i++) {
-                if (comparer(slice[m], slice[i]) > 0) {
+                if (comparison(slice[m], slice[i]) > 0) {
                     Swap<T>(ref slice[m], ref slice[i]);
                     Swap<T>(ref slice[i], ref slice[++m]);
                 }
